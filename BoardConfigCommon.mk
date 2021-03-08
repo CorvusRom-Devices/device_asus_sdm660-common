@@ -1,11 +1,15 @@
 #
-# Copyright (C) 2020 The LineageOS Project
+# Copyright (C) 2020 The CorvusOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
 COMMON_PATH := device/asus/sdm660-common
 BUILD_BROKEN_DUP_RULES := true
+
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+SKIP_ABI_CHECKS := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -115,6 +119,7 @@ BOARD_KERNEL_PAGESIZE    := 4096
 BOARD_KERNEL_IMAGE_NAME  := Image.gz-dtb
 
 TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CLANG_VERSION := proton
 TARGET_KERNEL_SOURCE := kernel/asus/sdm660
 
 # GPS

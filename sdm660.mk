@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2020 The LineageOS Project
+# Copyright (C) 2020 The CorvusOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -269,7 +269,7 @@ PRODUCT_PACKAGES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-corvus
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -449,6 +449,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
+# Inherit packages from vendor/addons/oneplus/apps
+$(call inherit-product, vendor/addons/oneplus/apps/config.mk)
+
 # WiFi Display
 PRODUCT_PACKAGES += \
     libaacwrapper \
@@ -465,3 +468,19 @@ PRODUCT_PACKAGES += \
     init.zenparts.rc \
     init.zenparts.sh \
     ZenParts
+
+YOUR_HW_PLATFORM := msm8998
+
+# Hardware
+PRODUCT_BOARD_PLATFORM := $(YOUR_HW_PLATFORM) 
+PRODUCT_USES_QCOM_HARDWARE := true
+
+# HALS
+SRC_AUDIO_HAL_DIR := hardware/qcom-caf/$(YOUR_HW_PLATFORM)/audio 
+SRC_DISPLAY_HAL_DIR := hardware/qcom-caf/$(YOUR_HW_PLATFORM)/display 
+SRC_MEDIA_HAL_DIR := hardware/qcom-caf/$(YOUR_HW_PLATFORM)/media
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += device/asus/X01BD
+PRODUCT_SOONG_NAMESPACES += device/asus/sdm660-common
+PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/msm8998

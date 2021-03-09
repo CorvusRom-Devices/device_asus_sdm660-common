@@ -482,15 +482,16 @@ PRODUCT_PACKAGES += \
 YOUR_HW_PLATFORM := msm8998
 
 # Hardware
-PRODUCT_BOARD_PLATFORM := $(YOUR_HW_PLATFORM) 
+PRODUCT_BOARD_PLATFORM := $(YOUR_HW_PLATFORM)
 PRODUCT_USES_QCOM_HARDWARE := true
 
 # HALS
-SRC_AUDIO_HAL_DIR := hardware/qcom-caf/$(YOUR_HW_PLATFORM)/audio 
-SRC_DISPLAY_HAL_DIR := hardware/qcom-caf/$(YOUR_HW_PLATFORM)/display 
+SRC_AUDIO_HAL_DIR := hardware/qcom-caf/$(YOUR_HW_PLATFORM)/audio
+SRC_DISPLAY_HAL_DIR := hardware/qcom-caf/$(YOUR_HW_PLATFORM)/display
 SRC_MEDIA_HAL_DIR := hardware/qcom-caf/$(YOUR_HW_PLATFORM)/media
 
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += device/asus/X01BD
-PRODUCT_SOONG_NAMESPACES += device/asus/sdm660-common
-PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/msm8998
+# OPLauncher
+$(call inherit-product, vendor/extras/extras.mk)
+
+PRODUCT_SOONG_NAMESPACES += vendor/extras
+PRODUCT_SOONG_NAMESPACES += vendor/addons/oneplus/apps
